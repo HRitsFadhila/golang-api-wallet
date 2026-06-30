@@ -9,11 +9,11 @@ import (
 
 var jwtKey = []byte(config.GetEnv("JWT_SECRET", "secret_key"))
 
-func GenerateToken(username string) string{
+func GenerateToken(email string) string{
 	expirationTime := time.Now().Add(60 * time.Minute)
 
 	claims := &jwt.RegisteredClaims{
-		Subject: username,
+		Subject: email,
 		ExpiresAt: jwt.NewNumericDate(expirationTime),
 	}
 
