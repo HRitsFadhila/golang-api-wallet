@@ -1,17 +1,16 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
+	"github.com/HRitsFadhila/golang-api-wallet/config"
+	"github.com/HRitsFadhila/golang-api-wallet/database"
+	"github.com/HRitsFadhila/golang-api-wallet/routes"
 )
 
 func main(){
-	router := gin.Default();
+	config.LoadEnv()
+	database.InitDB()
+	
+	r := routes.SetupRouter()
 
-	router.GET("/", func(c *gin.Context){
-		c.JSON(200, gin.H{
-			"message" : "Hello World!",
-		})
-	})
-
-	router.Run(":3000")
+	r.Run(":" + config.GetEnv("APP_PORT", "3000"))
 }
