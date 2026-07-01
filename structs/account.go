@@ -5,3 +5,7 @@ type AccountResponse struct {
 	Balance       string `json:"balance"`
 	Status        string `json:"string"`
 }
+
+type BalanceResponse struct {
+	Balance string `json:"balance"`
+}
