@@ -8,10 +8,11 @@ import (
 )
 
 type User struct{
-	Id uuid.UUID `json:"id" gorm:"primarykey;type:char(36)"`
+	Id uuid.UUID `json:"id" gorm:"primaryKey;type:char(36)"`
 	Name string `json:"name"`
 	Email string `json:"email" gorm:"unique;not null"`
-	Password string `json:"password"`
+	Password string `json:"-"`
+	Accounts []Account `json:"accounts,omitempty" gorm:"foreignKey:UserId"`
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
 }
